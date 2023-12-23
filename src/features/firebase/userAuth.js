@@ -33,3 +33,8 @@ export const registerWithEmailAndPassword = async(name, email, password) => {
         console.log("userAuth-", error)
     }
 }
+
+export const logout = async () => {
+    await signOut(auth);
+    return {success:true}
+}

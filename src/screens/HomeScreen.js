@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { View, Text, Pressable, Image, ScrollView, TextInput, TouchableWithoutFeedback } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -18,7 +18,7 @@ const HomeScreen = ({navigation}) => {
   const {products,setProducts} = useContext(productContext);
   
   const navigateToDetailScreen = (productId) => {
-    navigation.navigate("detailscreen", { productID: productId });
+    navigation.navigate("detailscreen", { productId: productId });
   };
 
   const fetchAllProducts = async () => {

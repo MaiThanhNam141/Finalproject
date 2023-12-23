@@ -11,7 +11,7 @@ const TotalSummaryCart = ({totalPrice}) => {
     const placeOrder = async () => {
       const res = await addToOrders();
       if(res.success===true){
-        ToastAndroid.show("Successfully!!!",ToastAndroid.BOTTOM)
+        ToastAndroid.show("Order Successfully!!!",ToastAndroid.BOTTOM)
         setCartItems([])
         setOrdersItems(res.data)
       }

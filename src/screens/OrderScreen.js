@@ -1,12 +1,12 @@
 import { Text, View, ScrollView } from "react-native";
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import OrderItem from "../components/OrderItem"
 import AuthContext from "../features/context/authContext";
 import orderContext from "../features/context/orderContext";
 import { getAllOrderItems } from "../features/firebase/order";
-import { auth } from "../../firebase";
+// import { auth } from "../../firebase";
 
 const OrderScreen = ({navigation}) => {
   const { orders, setOrders } = useContext(orderContext);

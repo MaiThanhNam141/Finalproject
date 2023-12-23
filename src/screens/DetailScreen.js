@@ -12,13 +12,8 @@ import cartContext from "../features/context/cartContext";
 const DetailScreen = ({navigation, route}) => {
   const {currentProduct:product,setCurrentProduct} = useContext(productContext);
   const {setCartItems} = useContext(cartContext) 
-  const [isDescriptionExpanded, setDescriptionExpanded] = useState(false);
   const id=route.params.productId;
   const [qty,setQty]=useState(1);
-
-  const toggleDescription = () => {
-    setDescriptionExpanded(!isDescriptionExpanded);
-  };
 
   const increment =()=>{
     setQty(prev=>prev+1)
@@ -42,8 +37,12 @@ const DetailScreen = ({navigation, route}) => {
   }
 
   const fetchProductById =async(id) =>{
-    const result = await getProductById(id)
-    setCurrentProduct(result)
+    try {
+      const result = await getProductById(id);
+      setCurrentProduct(result);
+    } catch (error) {
+      console.error("Failed to fetch product:", error); 
+    }
   }
   useEffect(()=>{
     fetchProductById(id)
@@ -78,26 +77,17 @@ const DetailScreen = ({navigation, route}) => {
               </View>
           </View>
           
-          <View className="mt-6">
-            <Text className="font-extrabold mb-3">Description</Text>
-            <ScrollView className="h-36">
-              {/* <Text className="text-gray-500 text-xs">{product?.description}</Text> */}
-              <Text className="text-gray-500 text-xs">
-              {product?.description ? (isDescriptionExpanded ? product.description : `${product.description.slice(0, 100)}...`) : ''}
-              </Text>
-              {!isDescriptionExpanded && (
-              <Pressable onPress={toggleDescription}>
-                <Text className="text-blue-300">View All</Text>
-              </Pressable>
-            )}
+          <View className="mt-5">
+            <ScrollView className="h-36 ">
+              <Text className="text-gray-500 text-xs">{product?.description}</Text>
             </ScrollView>
           </View>
         </View>
       </View>
-    <View className="absolute bottom-4 left-0 w-full px-4">
-      <View className="flex-row justify-between items-center mt-8">
+    <View className="absolute bottom-5 left-0 w-full px-4">
+      <View className="flex-row justify-between items-center mt-10">
         <View >
-          <Text className="text-gray-500 mb-[-4px]">Total Price</Text>
+          <Text className="text-gray-500 mb-[-4px]">Giá</Text>
           <Text className="font-bold text-lg">{product?.price}.000 vnd</Text>
         </View>
         <Pressable onPress={addItemToCart} className="items-center bg-black px-6 py-3 rounded-3xl" >

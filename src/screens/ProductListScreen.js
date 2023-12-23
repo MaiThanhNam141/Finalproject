@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { View, Text, Pressable , ScrollView} from 'react-native';
+import {Pressable , ScrollView} from 'react-native';
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { SafeAreaView } from 'react-native-safe-area-context';
 

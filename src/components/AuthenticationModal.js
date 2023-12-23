@@ -8,14 +8,12 @@ const AuthenticationModal = ({modalVisible, setModalVisible}) =>{
     const [type,setType] = useState("login")
     const [name,setName] = useState("")
     const [email,setEmail] = useState("nam@gmail.com")
-    const [password, setPassword] = useState("123456")
-    const [loading,setLoading] = useState(false)
+    const [password, setPassword] = useState("")
 
     const {currentUser, setCurrentUser, setIsLoggedIn} = useContext(AuthContext)
 
     const handleLogin = async()=>{
         const res = await loginWithEmailAndPassword(email, password)
-        console.log(res.email)
         if(res.success === true){
             setCurrentUser(res.user)
             setIsLoggedIn(true)
@@ -118,12 +116,6 @@ const AuthenticationModal = ({modalVisible, setModalVisible}) =>{
                                 <Text className="font-bold"> Login</Text>
                                 </Pressable>
                             </View>
-                          {/* {loading
-                          ?
-                          <ActivityIndicator size={"large"} />
-                            :
-                          }
-                          {error && <Text style={{color:"red"}}>{error}</Text>} */}
                         </View>
                     </Pressable>)
                 }

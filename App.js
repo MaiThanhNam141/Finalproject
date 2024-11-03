@@ -7,6 +7,7 @@ import { AuthProvider } from './src/features/context/authContext';
 import { ProductProvider } from './src/features/context/productContext';
 import { CartProvider} from './src/features/context/cartContext'
 import {OrderProvider} from './src/features/context/orderContext'
+import { View } from "react-native";
 NativeWindStyleSheet.setOutput({
   default: "native",
 });

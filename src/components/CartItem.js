@@ -1,4 +1,4 @@
-import {Text, View, Image, Pressable,ToastAndroid } from "react-native";
+import {Text, View, Image, Pressable} from "react-native";
 import React, { useContext } from "react";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 
@@ -11,7 +11,6 @@ const CartItem = ({bookName, image, price, title, qty, id}) => {
     const removeItem = async() =>{
         const res = await removeItemById(id)
         if(res.success===true){
-          ToastAndroid.show("Successfully",ToastAndroid.BOTTOM)
           setCartItems(res.data)
         }
       }

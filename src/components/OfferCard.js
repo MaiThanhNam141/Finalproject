@@ -7,7 +7,7 @@ const OfferCard = () =>{
             <View className="px-4 py-2">
                 <Text className="font-extrabold text-2xl">100% Off</Text>
                 <Text className="text-lg">All everything</Text>
-                <Text className="text-xs my-2">With code: ThayHuuDepTrai</Text>
+                <Text className="text-xs my-2">With code: SachYnghia</Text>
 
                 <Pressable className="bg-black w-20 rounded-2xl">
                     <Text className="text-white text-xs font-semibold mx-3 my-1">Get now!!!</Text>

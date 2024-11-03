@@ -5,7 +5,7 @@ export const getProducts = async() => {
     try {
         const productsRef = collection(db,"products")
         const productsSnapshot = await getDocs(productsRef)
-        const products = productsSnapshot.docs.map(document => ({ id: document.id, ...document.data() }))
+        const products = productsSnapshot.docs.map(document => ({ id: document.id, ...document.data() }));
         return products
     } catch (error) {
         console.log("products error", error)

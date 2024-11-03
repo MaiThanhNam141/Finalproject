@@ -12,11 +12,11 @@ import { getProducts } from '../features/firebase/product';
 import productContext from '../features/context/productContext';
 
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const {isLoggedIn,currentUser} = useContext(AuthContext);
-  const {products,setProducts} = useContext(productContext);
-  
+  const { isLoggedIn, currentUser } = useContext(AuthContext);
+  const { products, setProducts } = useContext(productContext);
+
   const navigateToDetailScreen = (productId) => {
     navigation.navigate("detailscreen", { productId: productId });
   };
@@ -25,8 +25,8 @@ const HomeScreen = ({navigation}) => {
     const result = await getProducts()
     setProducts(result)
   }
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     navigation.setOptions({
       headerShow: false
     })
@@ -38,29 +38,29 @@ const HomeScreen = ({navigation}) => {
         <View className="bg-black rounded-full w-10 h-10 justify-center items-center">
           <MaterialIcons name='menu' size={24} color={"#fff"} />
         </View>
-        {!isLoggedIn &&<View>
-          <Pressable className="flex-row items-center justify-center border border-slate-400 rounded-full h-23 w-30 m-3" 
-            onPress={()=>setModalVisible(!modalVisible)}>
+        {!isLoggedIn && <View>
+          <Pressable className="flex-row items-center justify-center border border-slate-400 rounded-full h-23 w-30 m-3"
+            onPress={() => setModalVisible(!modalVisible)}>
             <Image source={UserLogo} className="h-4 w-4 bg-transparent m-1"></Image>
             <Text className="font-semibold py-2 pr-4 pl-2">Login</Text>
           </Pressable>
         </View>}
       </View>
       <View className="mt-6 px-5">
-        <Text className="font-bold text-2xl">Welcome,  
+        <Text className="font-bold text-2xl">Welcome,
           <Text className="font-bold text-slate-500 ml-2">{currentUser?.name ? currentUser.name : 'Guest'}</Text>
         </Text>
-        <Text className="font-bold text-xl text-gray-500">BRUH shop</Text>
+        <Text className="font-bold text-xl text-gray-500">Book_Chili</Text>
       </View>
       <View className="mt-6 px-5">
         <View className="flex-row bg-gray-200 p-2 px-3 items-center rounded-3x1">
           <View>
-            <MaterialIcons name='search' size={24} color={'#111'}/>
+            <MaterialIcons name='search' size={24} color={'#111'} />
           </View>
-          <TextInput 
+          <TextInput
             placeholder='Search...'
             placeholderTextColor={'#666666'}
-            className="px-2"/>
+            className="px-2" />
         </View>
       </View>
       <View className="mt-6 p-5">
@@ -73,26 +73,27 @@ const HomeScreen = ({navigation}) => {
             <Text className="text-xs text-gray-500">View all</Text>
           </Pressable>
         </View>
-        <ScrollView 
+        <ScrollView
           className="mt-4 ml-5"
           horizontal={true}
           showsHorizontalScrollIndicator={false}>
-          {products?.map(product => (
-            <Pressable key={product.id} onPress={()=>navigateToDetailScreen(product.id)}>
-              <NewArrivalsCard 
-                title={product.title} 
+          {products && products?.map(product => (
+            <Pressable key={product.id} onPress={() => navigateToDetailScreen(product.id)}>
+              <NewArrivalsCard
+                title={product.title}
                 image={product.image}
                 description={product.description}
                 price={product.price}
-                bookName={product.bookName}/>
+                bookName={product.bookName} />
             </Pressable>
           ))}
         </ScrollView>
       </View>
       <View>
-        <AuthenticationModal 
+        <AuthenticationModal
           modalVisible={modalVisible}
-          setModalVisible={setModalVisible}/>
+          setModalVisible={setModalVisible} 
+          onclose={() => setModalVisible(false)} />
       </View>
     </SafeAreaView>
   );

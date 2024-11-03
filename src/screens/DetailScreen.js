@@ -1,4 +1,4 @@
-import { Text, View, Pressable, Image,ToastAndroid } from "react-native"
+import { Text, View, Pressable, Image } from "react-native"
 import React, { useContext, useEffect, useState } from "react"
 import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 import { ScrollView } from "react-native-gesture-handler";
@@ -31,7 +31,6 @@ const DetailScreen = ({navigation, route}) => {
   const addItemToCart = async() => {
     const res = await addToCart(id,qty)
     if(res.success===true){
-       ToastAndroid.show("Đã thêm vào giỏ hàng",ToastAndroid.BOTTOM)
       setCartItems(res.data)
     }
   }
@@ -60,9 +59,11 @@ const DetailScreen = ({navigation, route}) => {
       <View className="rounded-[30px]  bg-white mt-[-20px] p-5">
         <View>
           <View className="flex-row justify-between">
-              <View>
+              <View style={{ flexWrap: 'wrap', width: '100%' }}>
                   <Text className="font-extrabold text-lg">{product?.bookName}</Text>
-                  <Text className="text-xs text-gray-500">{product?.title}</Text>
+                  <Text className="text-xs text-gray-500 text-wrap" style={{ flexWrap: 'wrap', width: '100%' }}> {product?.title}</Text>
+                  <Text className="text-xs text-gray-500">{`Tác giả: ${product?.author}`}</Text>
+                  <Text className="text-xs text-gray-500">{`Thể loại: ${product?.category}`}</Text>
               </View>
               <View>
                   <View className="flex-row justify-center items-center">
@@ -88,7 +89,7 @@ const DetailScreen = ({navigation, route}) => {
       <View className="flex-row justify-between items-center mt-10">
         <View >
           <Text className="text-gray-500 mb-[-4px]">Giá</Text>
-          <Text className="font-bold text-lg">{product?.price}.000 vnd</Text>
+          <Text className="font-bold text-lg">{product?.price}vnd</Text>
         </View>
         <Pressable onPress={addItemToCart} className="items-center bg-black px-6 py-3 rounded-3xl" >
           <Text className="text-white font-semibold">Thêm vào giỏ hàng</Text>
